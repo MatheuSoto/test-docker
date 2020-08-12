@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         CONTAINER = "dockercontainer"
-        IMAGE = "dockertest"
+        IMAGE = "dockerimage"
     }
 
     options {
