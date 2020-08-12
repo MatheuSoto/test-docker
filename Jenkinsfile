@@ -11,10 +11,15 @@ pipeline {
     }
 
     stages {
+        stage('Stop docker compose'){
+            step{
+                sh 'docker-compose down'
+            }
+        }
         stage('Delete containers') {
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                    sh "docker rm -f ${env.CONTAINER}"
+                    sh 'docker rm -f ${docker ps -aq}'
                 }
             }
         }
@@ -28,9 +33,9 @@ pipeline {
                 sh "docker run ${env.IMAGE} npm test"
             }
         }
-        stage('Start container') {
+        stage('Start docker compose') {
             steps {
-                sh "docker run --name ${env.CONTAINER} --rm -d -p 3000:3000 ${env.IMAGE}"
+                sh "docker-compose up"
             }
         }
     }
