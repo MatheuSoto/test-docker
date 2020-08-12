@@ -12,7 +12,7 @@ pipeline {
 
     stages {
         stage('Stop docker compose'){
-            step{
+            steps {
                 sh 'docker-compose down'
             }
         }
