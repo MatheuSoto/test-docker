@@ -13,7 +13,9 @@ pipeline {
     stages {
         stage('Stop docker compose'){
             steps {
-                sh 'docker-compose down'
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    sh 'docker-compose down'
+                }
             }
         }
         stage('Delete containers') {
