@@ -6,11 +6,6 @@ pipeline {
     }
 
     stages {
-        stage('Delete old container') {
-            steps {
-                sh 'docker rm -f $(docker ps -aq)'
-            }
-        }
         stage('Create container') {
             steps {
                 sh 'docker build -t test .'
