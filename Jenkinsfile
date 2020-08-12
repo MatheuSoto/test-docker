@@ -30,7 +30,7 @@ pipeline {
         }
         stage('Start container') {
             steps {
-                sh "docker run --rm -d -p 3000:3000 ${env.CONTAINER}"
+                sh "docker run --name ${env.CONTAINER} --rm -d -p 3000:3000 ${env.IMAGE}"
             }
         }
     }
