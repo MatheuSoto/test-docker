@@ -2,7 +2,6 @@ pipeline {
     agent any
 
     environment {
-        CONTAINER = "dockercontainer"
         IMAGE = "dockerimage"
     }
 
