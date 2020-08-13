@@ -17,16 +17,16 @@ pipeline {
                 }
             }
         }
-        stage('Delete containers') {
-            steps {
-                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                    sh 'docker rm -f ${docker ps -aq}'
-                }
-            }
-        }
         stage('Create image') {
             steps {
                 sh "docker build -t ${env.IMAGE} ."
+            }
+        }
+        stage('Delete old images'){
+            steps {
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    sh 'docker image prune'
+                }
             }
         }
         stage('Run tests') {
