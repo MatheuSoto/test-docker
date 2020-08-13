@@ -2,15 +2,11 @@ version: "3"
 
 services:
   app:
-    image: node:12
-    volumes:
-      - .:/usr/src
+    image: dockerimage
     environment:
       MONGO_URL: "mongodb://db:27017/test"
     depends_on:
       - db
-    working_dir: /usr/src
-    command: ./node_modules/nodemon/bin/nodemon.js index.js
     ports:
       - "3000:3000"
 
