@@ -12,7 +12,7 @@ app.get('/', (req, res) => {
     if (err) {
       res.status(500).send('💥 Error en conexion de base de datos 💥: ' + err)
     } else {
-      res.send('Me contecte a la base 😎')
+      res.send('Me contecte a la base de datos 😎')
       db.close()
     }
   })
