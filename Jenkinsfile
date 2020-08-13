@@ -25,7 +25,7 @@ pipeline {
         stage('Delete old images'){
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                    sh 'docker image prune -a'
+                    sh 'docker system prune -f'
                 }
             }
         }
